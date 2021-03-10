@@ -34,7 +34,7 @@
   - Filtering : สามารถ OrderingFilter (ASC,ESC) ดังนี้ (id,username,email)
 
  ===========================
- 
+
 2. API /users/{id}/
 - Method: GET
 - Params: []
@@ -68,7 +68,7 @@
 
  ===========================
 
- 4. API /shop
+ 4. API /shop/{id}/
 - Method: GET
 - Params: []
 - Body: []
