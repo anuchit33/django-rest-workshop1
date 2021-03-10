@@ -7,5 +7,5 @@ from web_api.views import (
 
 
 urlpatterns = [
-    url(r'^user/$', UserList.as_view(),name="user-list"),    
+    #url(r'^user/$', UserList.as_view(),name="user-list"),    
 ]
