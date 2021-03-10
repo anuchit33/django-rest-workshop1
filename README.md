@@ -17,15 +17,37 @@
 ## Topic 
 1. API /users
 - Method: GET
-- Params: [username,email,first_name]
+- Params: [username,email,first_name,is_active,group,page,page_size]
 - Body: []
-- Response: {}
-- Status Code: [200-ดึงข้อมูลได้สำเร็จ,401-UNAUTHORIZED]
+- Response: {
+  results:[],count: (int),next: (String),previous: (String)}
+- Status Code: [200-ดึงข้อมูลได้สำเร็จ,403-FORBIDDEN]
 - AC:
   - สร้างกลุ่มผู้ใช้มีดัง (admin,user,customer)
   - จำลองข้อมูลผู้ใช้งานมา 20คน เป็น admin 1คน user 4คน customer 15คน
-  - ต้องสามารถดึงรายชื่อผู้ใช้งานได้ โดยดึงข้อมูล page ละ 5itemได้
-  - สามารถ filter ด้วย (username,email,first_name) แบบ contains
-  - ข้อมูลแต่ละ item ต้องมีดังนี้ (id,username,first_name,email,groups)
+  - Permissions: ผู้ใช้งานต้องมี Session เข้าสู่ระบบ 
+  - Pagination: ต้องสามารถดึงรายชื่อผู้ใช้งานได้ โดยดึงข้อมูล page ละ 5itemได้
+  - Filtering : สามารถ Search ด้วย (username,email,first_name) แบบ contains
+  - Filtering: สามารถ Filtering ด้วย (is_active,group)
+  - Filtering : สามารถ OrderingFilter (ASC,ESC) ดังนี้ (id,username,email)
+  - Serializers : ข้อมูลแต่ละ item ต้องมีดังนี้ (id,username,first_name,email,groups)
+
+ ===========================
+ 2. API /shop
+- Method: GET
+- Params: [name,email,phone,category,status,is_active,category,page,page_size]
+- Body: []
+- Response: {}
+- Status Code: [200-ดึงข้อมูลได้สำเร็จ,401-UNAUTHORIZED,403-FORBIDDEN]
+- AC:
+  - สร้าง Model Category ประกอบไปด้วยรายการหมวดหมู่ดังนี้ เสื้อผ้า,รองเท้า,กระเป๋า
+  - สร้าง Model Shop (id,name,detail,email,phone,category,status(เปิด,ปิด),is_active)
+  - จำลองข้อมูลผู้ร้านค้ามา 15ร้าน แบ่งเป็นแต่ละหมวด 15ร้าน
+  - Permissions: ผู้ใช้งานต้องเป็น Admin เท่านั้น
+  - Pagination: ต้องสามารถดึงรายชื่อผู้ใช้งานได้ โดยดึงข้อมูล page ละ 10itemได้
+  - Filtering : สามารถ Search ด้วย (name,email) แบบ contains
+  - Filtering: สามารถ Filtering ด้วย (is_active,status,category_id)
+  - Filtering : สามารถ OrderingFilter (ASC,ESC) ดังนี้ (id,name,email,phone,is_active)
+  - Serializers : ข้อมูลแต่ละ item ต้องมีดังนี้ (id,name,email,phone,category(id,name),status,status_display)
 
  ===========================

@@ -5,15 +5,15 @@ services:
   web:
     container_name: web
     restart: always
-    build: .
+    build: ./workshop1
     command: >
       bash -c "
         find . -path "*/migrations/*.py" -not -name "__init__.py" -delete
         find . -path "*/migrations/*.pyc"  -delete
-        python manage.py makemigrations backend_customer
+        python manage.py makemigrations web_api
         python manage.py migrate
         python manage.py runserver 0.0.0.0:8000"
     volumes:
-      - .:/code
+      - ./workshop1:/usr/src/app
     ports:
       - "8000:8000"
